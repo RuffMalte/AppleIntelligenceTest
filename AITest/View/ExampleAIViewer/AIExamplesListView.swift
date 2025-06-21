@@ -13,7 +13,7 @@ struct AIExamplesListView: View {
 			Section("Simple") {
 				
 				AIExamplesItemView(
-					title: "Simple",
+					title: PerformanceMetricType.aiResponse.navigationTitle,
 					icon: "1.square",
 					color: .blue,
 					navigationDestination: AnyView(
@@ -25,16 +25,27 @@ struct AIExamplesListView: View {
 			
 			Section("Structured data") {
 				AIExamplesItemView(
-					title: "Recipe Generator",
+					title: PerformanceMetricType.recipe.navigationTitle,
 					icon: "carrot.fill",
 					color: .red,
 					navigationDestination: AnyView(
-						AIStructuredDataRecipieExampleView()
+						AIStructuredDataRecipeExampleView()
 					)
 				)
 			}
 			
-			
+			Section("Tools") {
+				AIExamplesItemView(
+					title: PerformanceMetricType.recipeWithTool.navigationTitle,
+					icon: "apple.image.playground.fill",
+					color: .orange,
+					navigationDestination: AnyView(
+						AIToolRecipeExampleView()
+					)
+				)
+				
+				
+			}
 		}
 		
 		

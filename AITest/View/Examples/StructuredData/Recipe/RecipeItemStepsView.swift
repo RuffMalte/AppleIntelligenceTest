@@ -1,5 +1,5 @@
 //
-//  RecipieItemStepsView.swift
+//  RecipeItemStepsView.swift
 //  AITest
 //
 //  Created by Malte Ruff on 21.06.25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipieItemStepsView: View {
+struct RecipeItemStepsView: View {
 	
 	let recipe: RecipeModel
 	
@@ -38,6 +38,6 @@ struct RecipieItemStepsView: View {
 
 #Preview {
 	Form {
-		RecipieItemStepsView(recipe: .japaneseCurry)
+		RecipeItemStepsView(recipe: .japaneseCurry)
 	}
 }

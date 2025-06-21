@@ -8,7 +8,8 @@ import Foundation
 
 enum PerformanceMetricType: String, CaseIterable, Identifiable {
     case aiResponse
-    case recipie
+    case recipe
+	case recipeWithTool
 	
     var id: String { rawValue }
     
@@ -16,17 +17,21 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
         switch self {
         case .aiResponse: 
 			return "executionTimes"
-		case .recipie:
-			return "recipiePerformanceTimes"
+		case .recipe:
+			return "recipePerformanceTimes"
+		case .recipeWithTool:
+			return "recipeWithToolPerformanceTimes"
 		}
     }
     
     var navigationTitle: String {
         switch self {
         case .aiResponse: 
-			return "AI Response Times"
-		case .recipie:
-			return "Recipie Performance Times"
+			return "Simple AI Response"
+		case .recipe:
+			return "Recipe Generation"
+		case .recipeWithTool:
+			return "Recipe with Tool"
 		}
     }
     
@@ -34,7 +39,9 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
         switch self {
         case .aiResponse: 
 			return "s"
-		case .recipie:
+		case .recipe:
+			return "s"
+		case .recipeWithTool:
 			return "s"
 		}
     }

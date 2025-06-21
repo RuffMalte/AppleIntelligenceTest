@@ -1,5 +1,5 @@
 //
-//  RecipieItemHeaderView.swift
+//  RecipeItemHeaderView.swift
 //  AITest
 //
 //  Created by Malte Ruff on 21.06.25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipieItemHeaderView: View {
+struct RecipeItemHeaderView: View {
 	
 	let recipe: RecipeModel
 	
@@ -83,7 +83,7 @@ struct RecipieItemHeaderView: View {
 
 #Preview {
 	Form {
-		RecipieItemHeaderView(recipe: .japaneseCurry)
+		RecipeItemHeaderView(recipe: .japaneseCurry)
 		
 	}
 }

@@ -1,5 +1,5 @@
 //
-//  RecipieItemIngredientsView.swift
+//  RecipeItemIngredientsView.swift
 //  AITest
 //
 //  Created by Malte Ruff on 21.06.25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipieItemIngredientsView: View {
+struct RecipeItemIngredientsView: View {
 	
 	let recipe: RecipeModel
 	
@@ -74,6 +74,6 @@ struct RecipieItemIngredientsView: View {
 
 #Preview {
 	Form {
-		RecipieItemIngredientsView(recipe: .japaneseCurry)
+		RecipeItemIngredientsView(recipe: .japaneseCurry)
 	}
 }

@@ -8,12 +8,20 @@
 import SwiftUI
 import FoundationModels
 
-struct AIStructuredDataRecipieExampleView: View {
+struct AIStructuredDataRecipeExampleView: View {
 	@State private var intructions: String = "You are a professional recipe generator. When a user provides a list of available ingredients, dietary restrictions, preferred cuisine, or specific meal type (e.g., breakfast, dinner, dessert), generate a unique, easy-to-follow recipe that uses those ingredients as much as possible. Clearly list all required ingredients with quantities, followed by step-by-step cooking instructions. If the user specifies dietary needs (e.g., vegan, gluten-free), ensure the recipe complies. If the user is vague, ask clarifying questions to improve your output. Suggest creative flavor pairings and offer substitution ideas if an ingredient is missing. Keep instructions concise and beginner-friendly, and include estimated preparation and cooking times."
 	
 	@State private var prompt: String = "Create a Japanese Curry"
 	
-	@State private var answer: RecipeModel?
+	@State var answer: RecipeModel?
+	
+	var encoder: JSONEncoder {
+		let enc = JSONEncoder()
+		enc.outputFormatting = [.prettyPrinted]
+		return enc
+	}
+	
+	
 	@State private var isAnswerLoading: Bool = false
 	
 	
@@ -21,11 +29,6 @@ struct AIStructuredDataRecipieExampleView: View {
 	
     var body: some View {
 		Form {
-			Section {
-					//TODO: add json of model
-			}
-			
-			
 			Section("Prompt input (User)") {
 				TextEditor(text: $prompt)
 					.frame(height: 100)
@@ -37,13 +40,26 @@ struct AIStructuredDataRecipieExampleView: View {
 			}
 			
 			if let answer = answer, !isAnswerLoading {
-				RecipieItemHeaderView(recipe: answer)
+				RecipeItemHeaderView(recipe: answer)
 
-				RecipieItemIngredientsView(recipe: answer)
+				RecipeItemIngredientsView(recipe: answer)
 				
-				RecipieItemStepsView(recipe: answer)
+				RecipeItemStepsView(recipe: answer)
 				
-				
+				if let jsonData = try? encoder.encode(answer),
+				   let jsonString = String(data: jsonData, encoding: .utf8) {
+					Section {
+						NavigationLink {
+							Form {
+								Section {
+									Text(jsonString)
+								}
+							}
+						} label: {
+							Label("JSON Design", systemImage: "swift")
+						}
+					}
+				}
 			} else if isAnswerLoading {
 				HStack {
 					Spacer()
@@ -52,16 +68,13 @@ struct AIStructuredDataRecipieExampleView: View {
 				}
 				.listRowBackground(Color.clear)
 			}
-			
-			
-			
 		}
-		.navigationTitle("Recipe Generator")
+		.navigationTitle(PerformanceMetricType.recipe.navigationTitle)
 		.overlay {
 			GenerateAnswerButtonView {
 				Task {
 					await PerformanceMeasurer.measureAndSave(
-						metricType: .recipie,
+						metricType: .recipe,
 						task: {
 							
 							
@@ -91,9 +104,6 @@ struct AIStructuredDataRecipieExampleView: View {
 								isAnswerLoading = false
 								answer = result
 								
-								let encoder = JSONEncoder()
-								encoder.outputFormatting = .prettyPrinted
-								
 								if let jsonData = try? encoder.encode(answer),
 								   let jsonString = String(data: jsonData, encoding: .utf8) {
 									print(jsonString)
@@ -108,9 +118,9 @@ struct AIStructuredDataRecipieExampleView: View {
 		}
 		.sheet(isPresented: $isShowingChart) {
 			ExecutionTimeChartView(
-				userDefaultsKey: PerformanceMetricType.recipie.userDefaultsKey,
-				navigationTitle: PerformanceMetricType.recipie.navigationTitle,
-				unitName: PerformanceMetricType.recipie.unitName
+				userDefaultsKey: PerformanceMetricType.recipe.userDefaultsKey,
+				navigationTitle: PerformanceMetricType.recipe.navigationTitle,
+				unitName: PerformanceMetricType.recipe.unitName
 			)
 			.presentationDragIndicator(.visible)
 			.presentationDetents([.medium ,.large])
@@ -129,5 +139,5 @@ struct AIStructuredDataRecipieExampleView: View {
 }
 
 #Preview {
-    AIStructuredDataRecipieExampleView()
+	AIStructuredDataRecipeExampleView(answer: .japaneseCurry)
 }

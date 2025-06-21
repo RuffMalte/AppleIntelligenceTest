@@ -57,16 +57,22 @@ struct RecipeModel: Codable {
 	
 	var name: String
 	
+	@Guide(
+		description: "Image URL strings that match the recipe, only have valid URLS from the internet, no local paths, no example URLs, no URLs that lead to broken images, just valid URLs",
+		.count(5)
+	)
+	var imageURLsAsStrings: [String]
+	
 	@Guide(description: "A short description of the recipe")
 	var description: String
 	
-	@Guide(description: "Total time needed to prepare the recipe, including cooking time, in minutes")
+	@Guide(description: "Total time needed to prepare the recipe, including cooking time, in seconds")
 	var duration: TimeInterval
 	
-	@Guide(description: "Total time needed to cook the recipe, in minutes")
+	@Guide(description: "Total time needed to cook the recipe, in seconds")
 	var cookingTime: TimeInterval
 
-	@Guide(description: "Total time needed to prepare the recipe, in minutes")
+	@Guide(description: "Total time needed to prepare the recipe, in seconds")
 	var prepTime: TimeInterval
 	
 	var difficulty: RecipeDifficulty
@@ -84,6 +90,7 @@ struct RecipeModel: Codable {
 	var steps: [String]
 }
 
+
 @Generable
 struct RecipeIngredientModel: Codable, Identifiable {
 	var id: String = UUID().uuidString
@@ -97,7 +104,19 @@ struct RecipeIngredientModel: Codable, Identifiable {
 extension RecipeModel {
 	
 	static let japaneseCurry: RecipeModel = RecipeModel(
-		name: "Japanese Curry",
+		name: "Japanese Curry ",
+		imageURLsAsStrings: [
+			"https://i.redd.it/m1gsqzhtrph41.jpg",
+			"https://i.redd.it/r598zpcf6x321.jpg",
+			"https://dishingouthealth.com/wp-content/uploads/2022/01/SpicyMisoRamen_Square.jpg",
+			"https://www.foodandwine.com/thmb/0AXGLeY6dYnY8sEXFqxBa8opDrs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Tonkotsu-Ramen-FT-BLOG1122-8fe6c12d609a4fd4ab246bea3aae140e.jpg",
+			"https://sudachirecipes.com/wp-content/uploads/2022/11/tsukemen-7.jpg",
+			"https://example.com/ramen_vegan.jpg",
+			"https://i.redd.it/5s7ryksc0u411.jpg",
+			"https://blog.sakura.co/wp-content/uploads/2021/10/shutterstock_389877100-1.jpg",
+			"https://www.thefoodlens.com/uploads/2017/01/SANTOUKA-RAMEN_BRIAN-SAMUELS_SEPT-2016-9925.jpg",
+			"https://media.timeout.com/images/105591139/1372/1029/image.jpg"
+		],
 		description: "A comforting and flavorful Japanese curry perfect for dinner.",
 		duration: 180 * 60, // 180 minutes in seconds
 		cookingTime: 90 * 60, // 90 minutes in seconds

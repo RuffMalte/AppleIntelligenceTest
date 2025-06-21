@@ -86,7 +86,7 @@ struct AISimpleExampleView: View {
 				}
 			}
 		}
-		.navigationTitle("Simple Input")
+		.navigationTitle(PerformanceMetricType.aiResponse.navigationTitle)
 		.sheet(isPresented: $isShowingChart) {
 				ExecutionTimeChartView(
 					userDefaultsKey: PerformanceMetricType.aiResponse.userDefaultsKey,
