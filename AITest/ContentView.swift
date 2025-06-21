@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
 	
-
+	@State private var isShowingSheet: Bool = false
+	@State private var selectedExample: PerformanceMetricType = PerformanceMetricType.aiResponse
 	
-	@State private var response: String?
-	
+	@State private var isShowingComparisonSheet: Bool = false
     var body: some View {
         NavigationStack {
 			Form {
@@ -37,79 +37,44 @@ struct ContentView: View {
 				ToolbarItem(placement: .primaryAction) {
 					HStack(spacing: 20) {
 						Menu {
-							Button {
-								print("Hello")
-							} label: {
-								Label("Hello", systemImage: "person.fill")
-							}
-							Button {
-								print("Hello")
-							} label: {
-								Label("Hello", systemImage: "person.fill")
-							}
-							Button {
-								print("Hello")
-							} label: {
-								Label("Hello", systemImage: "person.fill")
+							ForEach(PerformanceMetricType.allCases) { metric in
+								Button {
+									selectedExample = metric
+									isShowingSheet.toggle()
+								} label: {
+									Label(metric.navigationTitle, systemImage: metric.icon)
+									
+								}
 							}
 							
 						} label: {
-							Label("Hello", systemImage: "person.fill")
+							Label("Calculation Times", systemImage: "chart.bar.fill")
 						}
-
+						
 						
 						Button {
-							print("Hello")
+							isShowingComparisonSheet.toggle()
 						} label: {
-							Label("Hello", systemImage: "internaldrive.fill")
-						}
-						Button {
-							print("Hello")
-						} label: {
-							Label("Hello", systemImage: "sun.max")
+							Label("Comparison", systemImage: "ruler.fill")
 						}
 					}
 					.padding(10)
 				}
 			})
 			.navigationTitle("AI Examples")
-//
-//			Button {
-//				Task {
-//					do {
-//						if let model = try? SystemLanguageModel.default.isAvailable {
-//							print("Model available: \(model)")
-//						} else {
-//							print("Model missing") // Triggers error 5000
-//						}
-//						
-//						let instruction = "You are a Japanese-speaking AI assistant. Your goal is to help Japanese students with their homework. You can ask questions about grammar, vocabulary, or any other topic related to Japanese language learning."
-//						let session = LanguageModelSession(model: .default, instructions: instruction)
-//						let options = GenerationOptions(temperature: 0, maximumResponseTokens: 2000)
-//						
-////						print(SystemLanguageModel.default.supportedLanguages)
-//						
-//						let prompt = "What is the meaning of the word 漢字 in Japanese?"
-//						let response = try await session.respond(to: Prompt(prompt), generating: GrammarModel.self, options: options)
-//						print(response)
-//						self.response = response.content.name
-//					} catch {
-//						
-//					}
-//				}
-//			} label: {
-//				Label("Ask", systemImage: "questionmark.circle")
-//			}
-//			.padding()
-//			.glassEffect(.regular)
-//			
-//			if let rep = response {
-//				Text(rep)
-//			}
-//			
-//			
-//			GenerativeView()
-//				.glassEffect(.regular)
+			.sheet(isPresented: $isShowingSheet) {
+				ExecutionTimeChartView(
+					userDefaultsKey: selectedExample.userDefaultsKey,
+					navigationTitle: selectedExample.navigationTitle,
+					unitName: selectedExample.unitName
+				)
+				.presentationDragIndicator(.visible)
+				.presentationDetents([.large, .medium])
+			}
+			.sheet(isPresented: $isShowingComparisonSheet) {
+				PerformanceComparisonView()
+			}
+
         }
     }
 }

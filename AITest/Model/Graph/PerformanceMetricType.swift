@@ -45,4 +45,15 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
 			return "s"
 		}
     }
+	
+	var icon: String {
+		switch self {
+		case .aiResponse:
+			return "1.square"
+		case .recipe:
+			return "carrot.fill"
+		case .recipeWithTool:
+			return "apple.image.playground.fill"
+		}
+	}
 }
