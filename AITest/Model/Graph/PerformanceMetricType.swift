@@ -53,7 +53,7 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
 		case .recipe:
 			return "carrot.fill"
 		case .recipeWithTool:
-			return "apple.image.playground.fill"
+			return "hammer.fill"
 		}
 	}
 }

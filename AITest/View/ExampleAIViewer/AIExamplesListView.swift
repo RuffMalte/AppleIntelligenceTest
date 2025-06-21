@@ -48,8 +48,15 @@ struct AIExamplesListView: View {
 			}
 			
 			
-			Section {
-				
+			Section("Image") {
+				AIExamplesItemView(
+					title: "Image Playground",
+					icon: "apple.image.playground.fill",
+					color: .black,
+					navigationDestination: AnyView(
+						AIImagePlaygroundExampleView()
+					)
+				)
 			}
 		}
 		
