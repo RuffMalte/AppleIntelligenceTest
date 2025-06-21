@@ -17,7 +17,7 @@ struct GenerativeView: View {
 	var body: some View {
 		switch model.availability {
 		case .available:
-			Label("Available", systemImage: "sparkles")
+			Label("Available", systemImage: "apple.intelligence")
 				.labelStyle(.iconTint(.orange))
 			
 		case .unavailable(.deviceNotEligible):

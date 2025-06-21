@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AIProgressView: View {
     var body: some View {
-		Image(systemName: "sparkles")
+		Image(systemName: "apple.intelligence")
 			.font(.largeTitle)
 			.padding()
 			.foregroundStyle(.orange.gradient)

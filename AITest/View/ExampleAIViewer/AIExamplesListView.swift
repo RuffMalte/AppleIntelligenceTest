@@ -25,11 +25,11 @@ struct AIExamplesListView: View {
 			
 			Section("Structured data") {
 				AIExamplesItemView(
-					title: "Structured data",
-					icon: "swiftdata",
+					title: "Recipe Generator",
+					icon: "carrot.fill",
 					color: .red,
 					navigationDestination: AnyView(
-						AIStructuredDataExampleView()
+						AIStructuredDataRecipieExampleView()
 					)
 				)
 			}

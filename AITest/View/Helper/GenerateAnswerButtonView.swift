@@ -18,7 +18,7 @@ struct GenerateAnswerButtonView: View {
 				Button {
 					onPress()
 				} label: {
-					Label("Generate", systemImage: "sparkles")
+					Label("Generate", systemImage: "apple.intelligence")
 						.labelStyle(.iconTint(.orange))
 				}
 				.padding()
