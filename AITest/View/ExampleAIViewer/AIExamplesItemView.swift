@@ -21,18 +21,23 @@ struct AIExamplesItemView: View {
 		NavigationLink {
 			navigationDestination
 		} label: {
-			HStack {
+			HStack(spacing: 10) {
 				Image(systemName: icon)
+					.frame(width: 24, height: 24)
 					.foregroundStyle(.white.gradient)
 					.font(.title3)
-					.padding(5)
+
 					.background(
 						RoundedRectangle(cornerRadius: 8)
 							.foregroundStyle(color.gradient)
+							.frame(width: 32, height: 32)
+
 					)
-					.frame(width: 24, height: 24)
 				
 				Text(title)
+					.font(
+						.system(.headline, design: .rounded, weight: .regular)
+					)
 			}
 		}
 

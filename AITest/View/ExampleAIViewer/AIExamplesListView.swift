@@ -16,12 +16,23 @@ struct AIExamplesListView: View {
 					title: "Simple",
 					icon: "1.square",
 					color: .blue,
-					navigationDestination: AnyView(AISimpleExampleView())
+					navigationDestination: AnyView(
+						AISimpleExampleView()
+					)
 				)
 				
 			}
 			
-			
+			Section("Structured data") {
+				AIExamplesItemView(
+					title: "Structured data",
+					icon: "swiftdata",
+					color: .red,
+					navigationDestination: AnyView(
+						AIStructuredDataExampleView()
+					)
+				)
+			}
 			
 			
 		}
