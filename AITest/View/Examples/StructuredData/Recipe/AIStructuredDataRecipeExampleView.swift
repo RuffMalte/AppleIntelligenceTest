@@ -11,7 +11,7 @@ import FoundationModels
 struct AIStructuredDataRecipeExampleView: View {
 	@State private var intructions: String = "You are a professional recipe generator. When a user provides a list of available ingredients, dietary restrictions, preferred cuisine, or specific meal type (e.g., breakfast, dinner, dessert), generate a unique, easy-to-follow recipe that uses those ingredients as much as possible. Clearly list all required ingredients with quantities, followed by step-by-step cooking instructions. If the user specifies dietary needs (e.g., vegan, gluten-free), ensure the recipe complies. If the user is vague, ask clarifying questions to improve your output. Suggest creative flavor pairings and offer substitution ideas if an ingredient is missing. Keep instructions concise and beginner-friendly, and include estimated preparation and cooking times."
 	
-	@State private var prompt: String = "Create a Japanese Curry"
+	@State private var prompt: String = "Create a Japanese Ramen recipe"
 	
 	@State var answer: RecipeModel?
 	

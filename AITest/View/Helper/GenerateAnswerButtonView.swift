@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GenerateAnswerButtonView: View {
 	
+	var text: String = "Generate"
+	var systemImage: String = "apple.intelligence"
+	
 	var onPress: () -> Void
 	
 	var body: some View {
@@ -18,20 +21,21 @@ struct GenerateAnswerButtonView: View {
 				Button {
 					onPress()
 				} label: {
-					Label("Generate", systemImage: "apple.intelligence")
+					Label(text, systemImage: systemImage)
 						.labelStyle(.iconTint(.orange))
+						.padding()
+						.glassEffect(.regular.interactive(), in: .capsule)
+						.font(
+							.system(
+								.headline,
+								design: .monospaced,
+								weight: .bold
+							)
+						)
 				}
-				.padding()
 				.buttonStyle(.plain)
+
 			}
-			.glassEffect(.regular.interactive(), in: .capsule)
-			.font(
-				.system(
-					.headline,
-					design: .monospaced,
-					weight: .bold
-				)
-			)
 		}
     }
 }

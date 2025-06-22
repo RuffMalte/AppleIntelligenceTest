@@ -21,6 +21,17 @@ struct AIExamplesListView: View {
 					)
 				)
 				
+				AIExamplesItemView(
+					title: PerformanceMetricType.summary.navigationTitle,
+					icon: PerformanceMetricType.summary.icon,
+					color: PerformanceMetricType.summary.color,
+					navigationDestination: AnyView(
+						AISummerizeSomeTextView()
+					)
+				)
+				
+				
+				
 			}
 			
 			Section("Structured data") {

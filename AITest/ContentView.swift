@@ -43,10 +43,8 @@ struct ContentView: View {
 									isShowingSheet.toggle()
 								} label: {
 									Label(metric.navigationTitle, systemImage: metric.icon)
-									
 								}
 							}
-							
 						} label: {
 							Label("Calculation Times", systemImage: "chart.bar.fill")
 						}
@@ -73,6 +71,7 @@ struct ContentView: View {
 			}
 			.sheet(isPresented: $isShowingComparisonSheet) {
 				PerformanceComparisonView()
+					.presentationDragIndicator(.visible)
 			}
 
         }

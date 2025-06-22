@@ -10,6 +10,7 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
     case aiResponse
     case recipe
 	case recipeWithTool
+	case summary
 	
     var id: String { rawValue }
     
@@ -21,6 +22,8 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
 			return "recipePerformanceTimes"
 		case .recipeWithTool:
 			return "recipeWithToolPerformanceTimes"
+		case .summary:
+			return "summary"
 		}
     }
     
@@ -32,6 +35,8 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
 			return "Recipe Generation"
 		case .recipeWithTool:
 			return "Recipe with Tool"
+		case .summary:
+			return "Text summarization"
 		}
     }
     
@@ -42,6 +47,8 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
 		case .recipe:
 			return "s"
 		case .recipeWithTool:
+			return "s"
+		case .summary:
 			return "s"
 		}
     }
@@ -54,6 +61,8 @@ enum PerformanceMetricType: String, CaseIterable, Identifiable {
 			return "carrot.fill"
 		case .recipeWithTool:
 			return "hammer.fill"
+		case .summary:
+			return "text.append"
 		}
 	}
 }

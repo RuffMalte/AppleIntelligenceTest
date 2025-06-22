@@ -211,6 +211,8 @@ extension PerformanceMetricType {
         case .aiResponse: return .blue
         case .recipe: return .green
         case .recipeWithTool: return .orange
-        }
+		case .summary:
+			return .purple
+		}
     }
 }
