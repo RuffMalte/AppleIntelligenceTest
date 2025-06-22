@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct AIProgressView: View {
+	var systemName: String = "apple.intelligence"
+	
     var body: some View {
-		Image(systemName: "apple.intelligence")
+		Image(systemName: systemName)
 			.font(.largeTitle)
 			.padding()
 			.foregroundStyle(.orange.gradient)

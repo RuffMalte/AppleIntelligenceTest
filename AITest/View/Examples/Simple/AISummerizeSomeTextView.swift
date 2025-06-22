@@ -79,7 +79,7 @@ struct AISummerizeSomeTextView: View {
 			} else if isAnswerLoading {
 				HStack {
 					Spacer()
-					AIProgressView()
+					AIProgressView(systemName: PerformanceMetricType.summary.icon)
 					Spacer()
 				}
 				.listRowBackground(Color.clear)
