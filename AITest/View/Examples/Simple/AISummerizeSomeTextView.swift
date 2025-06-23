@@ -94,16 +94,42 @@ struct AISummerizeSomeTextView: View {
 					await PerformanceMeasurer.measureAndSave(
 						metricType: .summary,
 						task: {
-							let session = LanguageModelSession(
-								instructions: intructions
-							)
-							
-							let response = try await session.respond(
-								to: prompt,
-								generating: String.self
-							)
-							
-							return response.content
+							do {
+								print(
+									"Amount of chars: " + prompt.count.description
+								)
+								
+								let str = prompt
+								let pattern = "\\w+"
+								let regex = try! NSRegularExpression(pattern: pattern)
+								let matches = regex.matches(in: str, range: NSRange(str.startIndex..<str.endIndex, in: str))
+								print(
+									"Amount of words: " + matches.count.description
+								)
+								
+								let session = LanguageModelSession(
+									instructions: intructions
+								)
+								
+								let options = GenerationOptions(
+									sampling: .greedy,
+									temperature: 2,
+									maximumResponseTokens: 9999999
+								)
+								
+								let response = try await session.respond(
+									to: prompt,
+									generating: String.self,
+									options: options
+								)
+								
+								return response.content
+							} catch let error as LanguageModelSession.GenerationError {
+								print(error.localizedDescription)
+							} catch {
+								print(error.localizedDescription)
+							}
+							return ""
 						},
 						onStart: {
 							withAnimation {
